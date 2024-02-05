@@ -53,3 +53,5 @@ One way of doing everything all in one model (which is desirable, to improve con
     <player_hands>
 ]
 ```
+
+I have decided not to follow this approach following an investigation into the logistic regression model (see [`model.md`](model.md)). I will scrape the encoded data into a number of different `.json` files, most likely within [PokerHandsDataset](https://github.com/linuskelsey/PokerHandsDataset) itself, so for example we will have something like `encoded_preflop.json`, `encoded_flop.json` and so on. Then from each of these `.json`'s, I will build my various models with the logistic regression model.
