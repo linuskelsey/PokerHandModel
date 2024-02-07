@@ -4,7 +4,7 @@
 
 The data we currently have is ~115,000 entries of this form:
 
-```json
+```
 <obj> = {
     "num_players": <num_players>,
     "board": <board_cards>,
@@ -67,7 +67,7 @@ From this directory, run the terminal scripts as such:
 ```zsh
 cd ../                                            # move above current directory
 git clone https://github.com/linuskelsey/PokerHandsDataset.git
-mkdir PokerHandsML
+mkdir PokerHandsML                                # OPTIONAL - only needed if both repos cloned into an already populated folder
 mv PokerHandsDataset PokerHandsML
 mv PokerHandModel PokerHandsML                    # Keep everything tidy!
 cd PokerHandsML/PokerHandsDataset                 # move into the dataset folder
@@ -80,4 +80,5 @@ python3 encode_basic.py                           # encode data from hands_basic
 mkdir game_data                                   # setup folder for separated data
 python3 separate_stages.py                        # separate encoded data into different stages of a hand (preflop, flop, river and turn (or all))
 cp -rf game_data ../PokerHandModel                # copy separated data to model folder
+cd ../PokerHandModel                              # return to model directory
 ```
