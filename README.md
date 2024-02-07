@@ -33,3 +33,5 @@ cp -rf game_data ../PokerHandModel                # copy separated data to model
 
 cd ../PokerHandModel                              # return to model directory
 ```
+
+For more information on each of these scripts, check out [PokerHandsDataset](https://github.com/linuskelsey/PokerHandsDataset).
