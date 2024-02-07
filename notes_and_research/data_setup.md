@@ -55,3 +55,28 @@ One way of doing everything all in one model (which is desirable, to improve con
 ```
 
 I have decided not to follow this approach following an investigation into the logistic regression model (see [`model.md`](model.md)). I will scrape the encoded data into a number of different `.json` files, most likely within [PokerHandsDataset](https://github.com/linuskelsey/PokerHandsDataset) itself, so for example we will have something like `encoded_preflop.json`, `encoded_flop.json` and so on. Then from each of these `.json`'s, I will build my various models with the logistic regression model.
+
+## Importing Data
+
+This repository is set up to be concurrent with [PokerHandsDataset](https://github.com/linuskelsey/PokerHandsDataset), so as a prerequisite you will need to clone this repo, and follow the commands all the way through to the separation of the data (at least one stage).
+
+### Tutorial
+
+From this directory, run the terminal scripts as such:
+
+```zsh
+cd ../                                            # move above current directory
+git clone https://github.com/linuskelsey/PokerHandsDataset.git
+mkdir PokerHandsML
+mv PokerHandsDataset PokerHandsML
+mv PokerHandModel PokerHandsML                    # Keep everything tidy!
+wget http://poker.cs.ualberta.ca/IRC/IRCdata.tgz  # download the database (-> IRCdata.tgz)
+tar -xvf IRCdata.tgz                              # unzip the tgz file (-> IRCdata)
+python3 extract.py                                # extract data (-> hands.json)
+python3 clean.py                                  # drop invalid hand data (-> hands_valid.json)
+python3 extract_basic.py                          # extract only the board, players' pocket cards and winners (-> hands_basic.json)
+python3 encode_basic.py                           # encode data from hands_basic.json into integers for a machine learning model (-> encoded_basic.json)
+mkdir game_data                                   # setup folder for separated data
+python3 separate_stages.py                        # separate encoded data into different stages of a hand (preflop, flop, river and turn (or all))
+cp -rf game_data ../PokerHandModel                # copy separated data to this folder
+```
