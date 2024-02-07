@@ -5,7 +5,7 @@
 The data we currently have is ~115,000 entries of this form:
 
 ```json
-obj = {
+<obj> = {
     "num_players": <num_players>,
     "board": <board_cards>,
     "players": <players_list>,
@@ -33,7 +33,7 @@ What I ultimately want this model to do is to give a (predicted) percentage prob
 So the question arises of: how do I build my model? And do I build only one model? Or one for each stage of the hand? Whatever the case, a single data point should look something like this:
 
 ```python3
-data_point = [
+<data_point> = [
     <in> = [
         <board_cards>,
         <player_hand>
@@ -70,6 +70,7 @@ git clone https://github.com/linuskelsey/PokerHandsDataset.git
 mkdir PokerHandsML
 mv PokerHandsDataset PokerHandsML
 mv PokerHandModel PokerHandsML                    # Keep everything tidy!
+cd PokerHandsML/PokerHandsDataset                 # move into the dataset folder
 wget http://poker.cs.ualberta.ca/IRC/IRCdata.tgz  # download the database (-> IRCdata.tgz)
 tar -xvf IRCdata.tgz                              # unzip the tgz file (-> IRCdata)
 python3 extract.py                                # extract data (-> hands.json)
@@ -78,5 +79,5 @@ python3 extract_basic.py                          # extract only the board, play
 python3 encode_basic.py                           # encode data from hands_basic.json into integers for a machine learning model (-> encoded_basic.json)
 mkdir game_data                                   # setup folder for separated data
 python3 separate_stages.py                        # separate encoded data into different stages of a hand (preflop, flop, river and turn (or all))
-cp -rf game_data ../PokerHandModel                # copy separated data to this folder
+cp -rf game_data ../PokerHandModel                # copy separated data to model folder
 ```
