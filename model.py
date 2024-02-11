@@ -2,6 +2,13 @@ import json
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 
+class Color:
+    BOLD = '\033[1m'
+    GREEN = '\033[32m'
+    CYAN = '\033[36m'
+    WHITE = '\033[97m'
+    CLEAR = '\033[0m'
+
 print("Building models for each stage...")
 
 stages = {'p': 'preflop', 'f': 'flop', 'r': 'river', 't': 'turn'}
@@ -19,5 +26,11 @@ for short, stage in stages.items():
 
     models[short] = clf
 
-    print(f"\n{stage.title()} model built.")
-    print(f"Parameters: {[round(c, 5) for c in clf.coef_[0]]}")
+    print("\n{}{}{} model built.".format(Color.BOLD + Color.GREEN, stage.upper(), Color.CLEAR))
+    print("{}Parameters{}: {}".format(Color.CYAN, Color.CLEAR, [round(c, 7) for c in clf.coef_[0]]))
+    print("Mean {}Accuracy{} on Training Data: {}{}{}".format(Color.CYAN, Color.CLEAR, Color.WHITE, clf.score(X_train, Y_train), Color.CLEAR))
+    print("Mean {}Accuracy{} on Test Data: {}{}{}".format(Color.CYAN, Color.CLEAR, Color.WHITE, clf.score(X_test, Y_test), Color.CLEAR))
+    if short != 't':
+        print("\n\t-------")
+
+print("\nAll models built.")
