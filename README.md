@@ -35,3 +35,8 @@ cd ../PokerHandModel                              # return to model directory
 ```
 
 For more information on each of these scripts, check out [PokerHandsDataset](https://github.com/linuskelsey/PokerHandsDataset).
+
+
+## Results
+
+With the current encoding (RofS -> numeric(R) + 13 * numeric(S), so 7 of Hearts is mapped to 7 + 13 * 3 = 46) the accuracy for each of the four stages sits around 53%. I'm wondering whether changing the encoding to prefer rank over suit will affect anything so now the 7 of Hearts -> (7 - 2) * 4 + 3 = 23 and the Queen of Hearts -> (12 - 2) * 4 + 3 = 43.

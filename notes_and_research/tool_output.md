@@ -17,3 +17,7 @@ Calculating prediction...
 Your predicted win percentage is: 63.27%
 Go for it, you can win this pot!
 ```
+
+I think actually I'd like to make a web app to represent the model output and data. The page will consist of multiple stages before a win percentage is given. First, he player's pocket cards are selected, then the player chooses the stage of the hand that they are in, and finally, they choose the community cards. From these the tool prints the predicted win probability. 
+
+First I will make a terminal tool as a prototype.
