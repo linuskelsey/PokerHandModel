@@ -1,1 +1,5 @@
+# Cleaned data from games
 game_data*
+
+# PyCache
+__pycache__
